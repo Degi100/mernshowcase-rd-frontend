@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.scss";
 
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [currentUser, setCurrentUser] = useState({})
+
+	useEffect(() => {
+		(async () => {
+			const requestOptions = {
+				method: 'GET',
+				credentials: 'include'
+			};
+			const response = await fetch('http://localhost:3003/currentuser', requestOptions);
+			if (response.ok) {
+				const _currentUser = await response.json();
+				setCurrentUser(prev => ({ ...prev, ..._currentUser }));
+			}
+		})();
+	}, []);
 
   const handleUsername = (e) => {
     const _username = e.target.value;
@@ -15,13 +30,22 @@ function App() {
     setPassword(_password);
   };
 
-  const handleLoginButton = (e) => {
-    e.preventDefault();
-    console.log("login on backend");
-  };
+    const handleLoginButton = async (e) => {
+        e.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            credentials: "include",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        };
+        const response = await fetch('http://localhost:3003/login', requestOptions);
+        const _currentUser = await response.json();
+        setCurrentUser(prev => ({...prev, ..._currentUser }));
+    }
 
   return (
     <div className="App">
+    <h2>Current User: {currentUser.firstName} {currentUser.lastName}</h2>
       <form>
         <fieldset>
           <legend>Login</legend>
