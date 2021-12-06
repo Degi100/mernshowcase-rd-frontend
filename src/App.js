@@ -13,11 +13,19 @@ function App() {
   const [passwordRegister1, setPasswordRegister1] = useState([]);
   const [passwordRegister2, setPasswordRegister2] = useState([]);
 
+  const handleFirstNameRegister = (e) => {
+    const firstNameRegister = e.target.value;
+    setFirstNameRegister(firstNameRegister);
+  };
+
+  const handleSecondNameRegister = (e) => {
+    const secondNameRegister = e.target.value;
+    setSecondNameRegister(secondNameRegister);
+  };
   const handleUserNameRegister = (e) => {
     const userNameRegister = e.target.value;
     setUserNameRegister(userNameRegister);
   };
-
   const handleEmailRegister = (e) => {
     const emailRegister = e.target.value;
     setEmailRegister(emailRegister);
@@ -32,17 +40,8 @@ function App() {
     const passwordRegister2 = e.target.value;
     setPasswordRegister2(passwordRegister2);
   };
- 
-  const handleFirstNameRegister = (e) => {
-    const firstNameRegister = e.targer.value;
-    setFirstNameRegister(firstNameRegister)
-  }
 
-  const handleSecondNameRegister = (e) => {
-    const secondNameRegister = e.target.value;
-    setSecondNameRegister(secondNameRegister);
-  }
- 
+
   useEffect(() => {
     (async () => {
       const requestOptions = {
@@ -197,38 +196,50 @@ function App() {
             </div>
           )}
         </div>
-        )}
-        <p>=====================REGISTER===========================</p>
-        <form>
+      )}
+      <p>=====================REGISTER===========================</p>
+      <form>
         <fieldset>
-        <legend>Register</legend>
-        <div className="row">
-        <label htmlFor="firstname">Name</label>
-        <input type='text' id='firstNameRegister' value={firstNameRegister} onChange={handleFirstNameRegister} placeholder='Firstname' />
-        </div>
-        <div className="row">
-        <label htmlFor="secondname"></label>
-        <input type='text' id='secondNameRegister' value={secondNameRegister} onChange={handleSecondNameRegister} placeholder='Lastname' />
-        </div>
-        <div className="row">
+          <legend>Register</legend>
+          <div className="row">
+            <label htmlFor="firstname">Name</label>
+            <input
+              type="text"
+              id="firstNameRegister"
+              value={firstNameRegister}
+              onChange={handleFirstNameRegister}
+              placeholder="Enter your firstname"
+            />
+          </div>
+          <div className="row">
+            <label htmlFor="secondname"></label>
+            <input
+              type="text"
+              id="secondNameRegister"
+              value={secondNameRegister}
+              onChange={handleSecondNameRegister}
+              placeholder="Enter your lastname"
+            />
+          </div>
+          <div className="row">
             <label htmlFor="userName">Username</label>
             <input
               type="text"
               id="username"
               value={userNameRegister}
               onChange={handleUserNameRegister}
-              placeholder="Enter your Username *"
+              placeholder="Enter your username *"
             />
           </div>
 
           <div className="row">
-            <label htmlFor="emailRegister">Your Email</label>
+            <label htmlFor="emailRegister">Email</label>
             <input
               type="text"
               id="emailregister"
               value={emailRegister}
               onChange={handleEmailRegister}
-              placeholder="Enter your Email *"
+              placeholder="Enter your email *"
             />
           </div>
 
@@ -239,7 +250,7 @@ function App() {
               id="passwordRegister1"
               value={passwordRegister1}
               onChange={handlePasswordRegister1}
-              placeholder="Your Password *"
+              placeholder="Enter your password *"
             />
           </div>
           <div className="row">
@@ -249,7 +260,7 @@ function App() {
               id="passwordRegister2"
               value={passwordRegister2}
               onChange={handlePasswordRegister2}
-              placeholder="Your Password same like the first one *"
+              placeholder="Your password same like the first one *"
             />
           </div>
           <div className="buttonRow">
@@ -258,7 +269,6 @@ function App() {
               <button>Reset</button>
             </div>
           </div>
-          
         </fieldset>
       </form>
     </div>
