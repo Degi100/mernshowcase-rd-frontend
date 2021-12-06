@@ -6,6 +6,43 @@ function App() {
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState({});
 
+  const [userNameRegister, setUserNameRegister] = useState("");
+  const [firstNameRegister, setFirstNameRegister] = useState("");
+  const [secondNameRegister, setSecondNameRegister] = useState("");
+  const [emailRegister, setEmailRegister] = useState("");
+  const [passwordRegister1, setPasswordRegister1] = useState([]);
+  const [passwordRegister2, setPasswordRegister2] = useState([]);
+
+  const handleUserNameRegister = (e) => {
+    const userNameRegister = e.target.value;
+    setUserNameRegister(userNameRegister);
+  };
+
+  const handleEmailRegister = (e) => {
+    const emailRegister = e.target.value;
+    setEmailRegister(emailRegister);
+  };
+
+  const handlePasswordRegister1 = (e) => {
+    const passwordRegister1 = e.target.value;
+    setPasswordRegister1(passwordRegister1);
+  };
+
+  const handlePasswordRegister2 = (e) => {
+    const passwordRegister2 = e.target.value;
+    setPasswordRegister2(passwordRegister2);
+  };
+ 
+  const handleFirstNameRegister = (e) => {
+    const firstNameRegister = e.targer.value;
+    setFirstNameRegister(firstNameRegister)
+  }
+
+  const handleSecondNameRegister = (e) => {
+    const secondNameRegister = e.target.value;
+    setSecondNameRegister(secondNameRegister);
+  }
+ 
   useEffect(() => {
     (async () => {
       const requestOptions = {
@@ -72,9 +109,8 @@ function App() {
 
   return (
     <div className="App">
-
       {currentUser.username && (
-       <div> 
+        <div>
           <h1>MERN Showcase App</h1>
           {currentUserIsInGroup("loggedInUsers") && (
             <h2>
@@ -107,30 +143,6 @@ function App() {
                   <button onClick={handleLoginButton}>Login</button>
                 </div>
               </fieldset>
-
-              <form>
-              <fieldset>
-              <legend>Register</legend>
-              <div className="row">
-              <label htmlFor="userName">Username</label>
-              <input type='text' id='username' value='userNameRegister' onChange='handleUsernameRegister' /></div>
-              
-              <div className="row">
-              <label htmlFor="emailRegister">Your Email</label>
-              <input type='text' id='emailregister' value='emailRegister' onChange='handleEmailRegister' /></div>
-
-              <div className="row">
-              <label htmlFor="password">Password1</label>
-              <input type='text' id='userPasswordRegister1' value='userPasswordRegister1' onChange='handlePasswordRegister1' /></div>
-
-                 <div className="row">
-              <label htmlFor="password">Password2</label>
-              <input type='text' id='userPasswordRegister2' value='userPasswordRegister2' onChange='handlePasswordRegister2' /></div>
-
-              
-              
-              </fieldset>
-              </form>
             </form>
           )}
           {currentUserIsInGroup("loggedInUsers") && (
@@ -143,57 +155,112 @@ function App() {
           )}
 
           {currentUserIsInGroup("notApprovedUsers") && (
-      
-              <div className="panel">
-                <h3>Thank you for registering!</h3>
-                An administrator will approve your account as soon as possible.
-              </div>
-        
+            <div className="panel">
+              <h3>Thank you for registering!</h3>
+              An administrator will approve your account as soon as possible.
+            </div>
           )}
           {currentUserIsInGroup("members") && (
-         
-              <div className="panel">
-                <h3>Current Site News for Members</h3>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Neque explicabo voluptate quia asperiores sit! Vel molestiae
-                  labore ratione non dolores? Exercitationem soluta quo id
-                  laboriosam, autem perferendis? Fuga, suscipit ipsa.
-                </p>
-              </div>
-         
+            <div className="panel">
+              <h3>Current Site News for Members</h3>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque
+                explicabo voluptate quia asperiores sit! Vel molestiae labore
+                ratione non dolores? Exercitationem soluta quo id laboriosam,
+                autem perferendis? Fuga, suscipit ipsa.
+              </p>
+            </div>
           )}
           {currentUserIsInGroup("contentEditors") && (
-          
-              <div className="panel">
-                <h3>Content Editor Section:</h3>
-                <div>
-                  <button>Edit Welcome Page</button>
-                </div>
-                <div>
-                  <button>Create New Page</button>
-                </div>
+            <div className="panel">
+              <h3>Content Editor Section:</h3>
+              <div>
+                <button>Edit Welcome Page</button>
               </div>
-          
+              <div>
+                <button>Create New Page</button>
+              </div>
+            </div>
           )}
           {currentUserIsInGroup("admins") && (
-            
-              <div className="panel">
-                <h3>Admin Section:</h3>
-                <div>
-                  <button>Create users</button>
-                </div>
-                <div>
-                  <button>Edit users</button>
-                </div>
-                <div>
-                  <button>Delete users</button>
-                </div>
+            <div className="panel">
+              <h3>Admin Section:</h3>
+              <div>
+                <button>Create users</button>
               </div>
-           
+              <div>
+                <button>Edit users</button>
+              </div>
+              <div>
+                <button>Delete users</button>
+              </div>
+            </div>
           )}
         </div>
-      )}
+        )}
+        <p>=====================REGISTER===========================</p>
+        <form>
+        <fieldset>
+        <legend>Register</legend>
+        <div className="row">
+        <label htmlFor="firstname">Name</label>
+        <input type='text' id='firstNameRegister' value={firstNameRegister} onChange={handleFirstNameRegister} placeholder='Firstname' />
+        </div>
+        <div className="row">
+        <label htmlFor="secondname"></label>
+        <input type='text' id='secondNameRegister' value={secondNameRegister} onChange={handleSecondNameRegister} placeholder='Lastname' />
+        </div>
+        <div className="row">
+            <label htmlFor="userName">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={userNameRegister}
+              onChange={handleUserNameRegister}
+              placeholder="Enter your Username *"
+            />
+          </div>
+
+          <div className="row">
+            <label htmlFor="emailRegister">Your Email</label>
+            <input
+              type="text"
+              id="emailregister"
+              value={emailRegister}
+              onChange={handleEmailRegister}
+              placeholder="Enter your Email *"
+            />
+          </div>
+
+          <div className="row">
+            <label htmlFor="password">Password1</label>
+            <input
+              type="text"
+              id="passwordRegister1"
+              value={passwordRegister1}
+              onChange={handlePasswordRegister1}
+              placeholder="Your Password *"
+            />
+          </div>
+          <div className="row">
+            <label htmlFor="password">Password2</label>
+            <input
+              type="text"
+              id="passwordRegister2"
+              value={passwordRegister2}
+              onChange={handlePasswordRegister2}
+              placeholder="Your Password same like the first one *"
+            />
+          </div>
+          <div className="buttonRow">
+            <button>Register</button>
+            <div className="buttonRow">
+              <button>Reset</button>
+            </div>
+          </div>
+          
+        </fieldset>
+      </form>
     </div>
   );
 }
