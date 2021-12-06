@@ -72,6 +72,7 @@ function App() {
 
   return (
     <div className="App">
+
       {currentUser.username && (
        <div> 
           <h1>MERN Showcase App</h1>
@@ -80,7 +81,6 @@ function App() {
               Current User: {currentUser.firstName} {currentUser.lastName}
             </h2>
           )}
-
           {currentUserIsInGroup("loggedOutUsers") && (
             <form>
               <fieldset>
@@ -107,6 +107,30 @@ function App() {
                   <button onClick={handleLoginButton}>Login</button>
                 </div>
               </fieldset>
+
+              <form>
+              <fieldset>
+              <legend>Register</legend>
+              <div className="row">
+              <label htmlFor="userName">Username</label>
+              <input type='text' id='username' value='userNameRegister' onChange='handleUsernameRegister' /></div>
+              
+              <div className="row">
+              <label htmlFor="emailRegister">Your Email</label>
+              <input type='text' id='emailregister' value='emailRegister' onChange='handleEmailRegister' /></div>
+
+              <div className="row">
+              <label htmlFor="password">Password1</label>
+              <input type='text' id='userPasswordRegister1' value='userPasswordRegister1' onChange='handlePasswordRegister1' /></div>
+
+                 <div className="row">
+              <label htmlFor="password">Password2</label>
+              <input type='text' id='userPasswordRegister2' value='userPasswordRegister2' onChange='handlePasswordRegister2' /></div>
+
+              
+              
+              </fieldset>
+              </form>
             </form>
           )}
           {currentUserIsInGroup("loggedInUsers") && (
