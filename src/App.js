@@ -5,14 +5,13 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState({});
-  
 
   const [userNameRegister, setUserNameRegister] = useState("");
   const [firstNameRegister, setFirstNameRegister] = useState("");
   const [secondNameRegister, setSecondNameRegister] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
-  const [passwordRegister1, setPasswordRegister1] = useState([]);
-  const [passwordRegister2, setPasswordRegister2] = useState([]);
+  const [passwordRegister1, setPasswordRegister1] = useState("");
+  const [passwordRegister2, setPasswordRegister2] = useState("");
 
   const handleFirstNameRegister = (e) => {
     const firstNameRegister = e.target.value;
@@ -41,7 +40,41 @@ function App() {
     const passwordRegister2 = e.target.value;
     setPasswordRegister2(passwordRegister2);
   };
+  ////////////////////////////////
 
+  const handleRegisterButton = async (e) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: {
+          username: userNameRegister,
+          firstName: firstNameRegister,
+          lastName: secondNameRegister,
+          email: emailRegister,
+          password1: passwordRegister1,
+          password2: passwordRegister2,
+        },
+      }),
+    };
+    const response = await fetch(
+      "http://localhost:3003/createuser",
+      requestOptions
+    );
+    if (response.ok) {
+      const _currentUser = await response.json();
+      setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
+      setUserNameRegister("");
+      setFirstNameRegister("");
+      setSecondNameRegister("");
+      setEmailRegister("");
+      setPasswordRegister1("");
+      setPasswordRegister2("");
+    }
+  };
+  /////////////////////////////
 
   useEffect(() => {
     (async () => {
@@ -153,7 +186,6 @@ function App() {
           {currentUserIsInGroup("loggedOutUsers") && (
             <div className="panel">Welcome to this site.</div>
           )}
-
           {currentUserIsInGroup("notApprovedUsers") && (
             <div className="panel">
               <h3>Thank you for registering!</h3>
@@ -265,7 +297,7 @@ function App() {
             />
           </div>
           <div className="buttonRow">
-            <button>Register</button>
+            <button onClick={handleRegisterButton}>Register</button>
             <div className="buttonRow">
               <button>Reset</button>
             </div>
