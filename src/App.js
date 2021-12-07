@@ -13,6 +13,50 @@ function App() {
   const [passwordRegister1, setPasswordRegister1] = useState("");
   const [passwordRegister2, setPasswordRegister2] = useState("");
 
+  const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
+
+  ///////////////////////////
+  const loadNotYetApprovedUsers = async () => {
+    const requestOptions = {
+      method: "GET",
+      credentials: "include",
+    };
+    const response = await fetch(
+      "http://localhost:3003/notyetapprovedusers",
+      requestOptions
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setNotYetApprovedUsers((prev) => [...data.users]);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const requestOptions = {
+        method: "GET",
+        credentials: "include",
+      };
+      const response = await fetch(
+        "http://localhost:3003/currentuser",
+        requestOptions
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setCurrentUser((prev) => ({ ...prev, ...data.user }));
+      }
+      loadNotYetApprovedUsers();
+    })();
+  }, []);
+
+  const currentUserIsInGroup = (accessGroup) => {
+    const accessGroupArray = currentUser.accessGroups
+      .split(",")
+      .map((m) => m.trim());
+    return accessGroupArray.includes(accessGroup);
+  };
+
+  ///////////////////////////////
   const handleFirstNameRegister = (e) => {
     const firstNameRegister = e.target.value;
     setFirstNameRegister(firstNameRegister);
@@ -75,6 +119,22 @@ function App() {
     }
   };
   /////////////////////////////
+  const handle_approveUserButton = async (id) => {
+    const requestOptions = {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    };
+    const response = await fetch(
+      "http://localhost:3003/approveuser",
+      requestOptions
+    );
+    if (response.ok) {
+      await response.json();
+      loadNotYetApprovedUsers();
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -92,14 +152,6 @@ function App() {
       }
     })();
   }, []);
-
-  const currentUserIsInGroup = (accessGroup) => {
-    const accessGroupArray = currentUser.accessGroups
-      .split(",")
-      .map((m) => m.trim());
-    return accessGroupArray.includes(accessGroup);
-  };
-
   const handleUsername = (e) => {
     const _username = e.target.value;
     setUsername(_username);
@@ -217,6 +269,33 @@ function App() {
           {currentUserIsInGroup("admins") && (
             <div className="panel">
               <h3>Admin Section:</h3>
+              <h4>{notYetApprovedUsers.length} Users to Approve</h4>
+              <table className="minimalListBlack">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {notYetApprovedUsers.map((user, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{user.firstName}</td>
+                        <td>{user.lastName}</td>
+                        <td>
+                          <button
+                            onClick={() => handle_approveUserButton(user._id)}
+                          >
+                            Approve
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
               <div>
                 <button>Create users</button>
               </div>
