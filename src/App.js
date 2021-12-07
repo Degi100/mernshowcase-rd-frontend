@@ -5,6 +5,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState({});
+  
 
   const [userNameRegister, setUserNameRegister] = useState("");
   const [firstNameRegister, setFirstNameRegister] = useState("");
