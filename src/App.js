@@ -1,22 +1,24 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Nav from "./components/Nav";
+import PageWelcome from "./pages/PageWelcome";
+import PageRegister from "./pages/PageRegister";
+import PageLogin from "./pages/PageLogin";
 import "./App.scss";
 
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState({});
-
   const [userNameRegister, setUserNameRegister] = useState("");
   const [firstNameRegister, setFirstNameRegister] = useState("");
   const [secondNameRegister, setSecondNameRegister] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister1, setPasswordRegister1] = useState("");
   const [passwordRegister2, setPasswordRegister2] = useState("");
-  const [loginFormMessage, setLoginFormMessage] = useState('')
-
+  const [loginFormMessage, setLoginFormMessage] = useState("");
   const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
 
-  ///////////////////////////
   const loadNotYetApprovedUsers = async () => {
     const requestOptions = {
       method: "GET",
@@ -172,10 +174,10 @@ function App() {
       body: JSON.stringify({ username, password }),
     };
     const response = await fetch("http://localhost:3003/login", requestOptions);
-    if(!response.ok) {
-      setUsername('');
-      setPassword('');
-      setLoginFormMessage("bad Login")
+    if (!response.ok) {
+      setUsername("");
+      setPassword("");
+      setLoginFormMessage("bad Login");
     } else {
       const _currentUser = await response.json();
       setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
@@ -204,6 +206,13 @@ function App() {
       {currentUser.username && (
         <div>
           <h1>MERN Showcase App</h1>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<PageWelcome />} />
+            <Route path="register" element={<PageRegister />} />
+            <Route path="login" element={<PageLogin />} />
+          </Routes>
+
           {currentUserIsInGroup("loggedInUsers") && (
             <h2>
               Current User: {currentUser.firstName} {currentUser.lastName}
@@ -320,9 +329,8 @@ function App() {
       <p>=====================REGISTER===========================</p>
       <form>
         <fieldset>
-        <legend>Register</legend>
-          <div>
-          </div>
+          <legend>Register</legend>
+          <div></div>
           <div className="row">
             <label htmlFor="firstname">Name</label>
             <input
