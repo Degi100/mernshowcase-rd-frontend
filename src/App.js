@@ -12,6 +12,7 @@ function App() {
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister1, setPasswordRegister1] = useState("");
   const [passwordRegister2, setPasswordRegister2] = useState("");
+  const [loginFormMessage, setLoginFormMessage] = useState('')
 
   const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
 
@@ -171,8 +172,14 @@ function App() {
       body: JSON.stringify({ username, password }),
     };
     const response = await fetch("http://localhost:3003/login", requestOptions);
-    const _currentUser = await response.json();
-    setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
+    if(!response.ok) {
+      setUsername('');
+      setPassword('');
+      setLoginFormMessage("bad Login")
+    } else {
+      const _currentUser = await response.json();
+      setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
+    }
   };
 
   const handleLogoutButton = async (e) => {
@@ -206,6 +213,7 @@ function App() {
             <form>
               <fieldset>
                 <legend>Login</legend>
+                <div>{loginFormMessage}</div>
                 <div className="row">
                   <label htmlFor="username">Name</label>
                   <input
@@ -312,7 +320,9 @@ function App() {
       <p>=====================REGISTER===========================</p>
       <form>
         <fieldset>
-          <legend>Register</legend>
+        <legend>Register</legend>
+          <div>
+          </div>
           <div className="row">
             <label htmlFor="firstname">Name</label>
             <input
