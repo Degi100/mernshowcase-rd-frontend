@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import PageWelcome from "./pages/PageWelcome";
 import PageRegister from "./pages/PageRegister";
 import PageLogin from "./pages/PageLogin";
+import "./reset.scss";
 import "./App.scss";
 
 function App() {
