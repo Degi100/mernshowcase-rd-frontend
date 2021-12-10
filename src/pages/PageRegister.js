@@ -129,7 +129,7 @@ const PageRegister = () => {
             <div className="row">
               <label htmlFor="password">Password1</label>
               <input
-                type="text"
+                type="password"
                 id="passwordRegister1"
                 value={passwordRegister1}
                 onChange={handlePasswordRegister1}
@@ -139,7 +139,7 @@ const PageRegister = () => {
             <div className="row">
               <label htmlFor="password">Password2</label>
               <input
-                type="text"
+                type="password"
                 id="passwordRegister2"
                 value={passwordRegister2}
                 onChange={handlePasswordRegister2}
