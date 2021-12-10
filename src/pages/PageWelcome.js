@@ -1,19 +1,39 @@
 import { useContext } from "react";
-import AppContext from "../AppContext";
+import AppContext from '../AppContext';
 
 const PageWelcome = () => {
-  const { siteStatus, toggleStatus } = useContext(AppContext);
-
+  const { currentUser, currentUserIsInGroup } = useContext(AppContext);
   return (
     <div>
-      <p>
-        This is the welcome page. 
-		The current status is: 
-        <span className="highlight"> {siteStatus}</span>
-      </p>
-      <p>
-        <button onClick={toggleStatus}>Toggle Status</button>
-      </p>
+      <h1>MERN Showcase App</h1>
+      {currentUserIsInGroup("loggedOutUsers") && (
+        <div className="panel">Welcome to this site.</div>
+      )}
+
+      {currentUser.username && (
+        <h2>
+          Current User: {currentUser.firstName} {currentUser.lastName}
+        </h2>
+      )}
+
+      {currentUserIsInGroup("members") && (
+        <div className="panel">
+          <h3>Current Site News for Members</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque
+            explicabo voluptate quia asperiores sit! Vel molestiae labore
+            ratione non dolores? Exercitationem soluta quo id laboriosam, autem
+            perferendis? Fuga, suscipit ipsa.
+          </p>
+        </div>
+      )}
+
+      {currentUserIsInGroup("notApprovedUsers") && (
+        <div className="panel">
+          <h3>Thank you for registering!</h3>
+          An administrator will approve your account as soon as possible.
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import AppContext from "../AppContext";
 
 const Nav = () => {
+  const {currentUser} = useContext(AppContext);
+
   return (
     <nav>
       <ul>
@@ -8,11 +12,19 @@ const Nav = () => {
           <NavLink to="/">Welcome</NavLink>
         </li>
         <li>
-          <NavLink to="register">Register</NavLink>
+          <NavLink to="/register">Register</NavLink>
         </li>
         <li>
-          <NavLink to="login">Login</NavLink>
+          <NavLink to="/admin">Admin</NavLink>
         </li>
+        <li>
+          <NavLink to="/login">Login</NavLink>
+        </li>
+        {currentUser.login && ( 
+        <li>
+          <NavLink to="/logout">Logout</NavLink>
+        </li>
+        )}
       </ul>
     </nav>
   );
