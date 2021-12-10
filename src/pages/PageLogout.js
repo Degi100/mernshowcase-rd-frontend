@@ -25,7 +25,7 @@ const PageLogout = () => {
   return (
     <div>
       {currentUserIsInGroup("loggedInUsers") && (
-        <div>
+        <div><p>Are yout sure?</p>
           <button onClick={handleLogoutButton}>Logout</button>
         </div>
       )}

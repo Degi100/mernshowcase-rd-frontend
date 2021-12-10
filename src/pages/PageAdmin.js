@@ -11,22 +11,7 @@ const PageAdmin = () => {
     })();
   }, []);
 
-  const loadNotYetApprovedUsers = async () => {
-    const requestOptions = {
-      method: "GET",
-      credentials: "include",
-    };
-    const response = await fetch(
-      "http://localhost:3003/notyetapprovedusers",
-      requestOptions
-    );
-    if (response.ok) {
-      const data = await response.json();
-      setNotYetApprovedUsers((prev) => [...data.users]);
-    }
-  };
-
-    const handle_approveUserButton = async (id) => {
+  const handle_approveUserButton = async (id) => {
     const requestOptions = {
       method: "POST",
       credentials: "include",
@@ -43,9 +28,24 @@ const PageAdmin = () => {
     }
   };
 
+  const loadNotYetApprovedUsers = async () => {
+    const requestOptions = {
+      method: "GET",
+      credentials: "include",
+    };
+    const response = await fetch(
+      "http://localhost:3003/notyetapprovedusers",
+      requestOptions
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setNotYetApprovedUsers((prev) => [...data.users]);
+    }
+  };
+
   return (
     <div>
-      {currentUserIsInGroup("contentEditors") && (
+      {currentUserIsInGroup("admins") && (
         <div className="panel">
           <h3>Content Editor Section:</h3>
           <div>
