@@ -27,20 +27,32 @@ const PageAdmin = () => {
       loadNotYetApprovedUsers();
     }
   };
+    const loadNotYetApprovedUsers = async () => {
+      const requestOptions = {
+        method: "GET",
+        credentials: "include",
+      };
+      const response = await fetch(
+        "http://localhost:3003/notyetapprovedusers",
+        requestOptions
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setNotYetApprovedUsers((prev) => [...data.users]);
+      }
+};
 
-  const loadNotYetApprovedUsers = async () => {
-    const requestOptions = {
-      method: "GET",
+  const handle_deleteuser = async(id) => {
+    const response = await fetch("http://localhost:3003/deleteuser", {
+      method: "delete",
       credentials: "include",
-    };
-    const response = await fetch(
-      "http://localhost:3003/notyetapprovedusers",
-      requestOptions
-    );
-    if (response.ok) {
-      const data = await response.json();
-      setNotYetApprovedUsers((prev) => [...data.users]);
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    if(response.ok){
+      loadNotYetApprovedUsers();
     }
+
   };
 
   return (
@@ -83,6 +95,11 @@ const PageAdmin = () => {
                       >
                         Approve
                       </button>
+                      <div>
+                        <button onClick={() => handle_deleteuser(user._id)}>
+                          Delete users
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -94,9 +111,6 @@ const PageAdmin = () => {
           </div>
           <div>
             <button>Edit users</button>
-          </div>
-          <div>
-            <button>Delete users</button>
           </div>
         </div>
       )}
