@@ -1,4 +1,3 @@
-
 import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
@@ -10,7 +9,8 @@ const PageRegister = () => {
   const [userNameRegister, setUserNameRegister] = useState("");
   const [firstNameRegister, setFirstNameRegister] = useState("");
   const [secondNameRegister, setSecondNameRegister] = useState("");
-  const [emailRegister, setEmailRegister] = useState("");
+  const [emailRegister1, setEmailRegister1] = useState("");
+  const [emailRegister2, setEmailRegister2] = useState("");
   const [passwordRegister1, setPasswordRegister1] = useState("");
   const [passwordRegister2, setPasswordRegister2] = useState("");
 
@@ -27,9 +27,14 @@ const PageRegister = () => {
     const userNameRegister = e.target.value;
     setUserNameRegister(userNameRegister);
   };
-  const handleEmailRegister = (e) => {
-    const emailRegister = e.target.value;
-    setEmailRegister(emailRegister);
+  const handleEmailRegister1 = (e) => {
+    const emailRegister1 = e.target.value;
+    setEmailRegister1(emailRegister1);
+  };
+
+  const handleEmailRegister2 = (e) => {
+    const emailRegister2 = e.target.value;
+    setEmailRegister2(emailRegister2);
   };
 
   const handlePasswordRegister1 = (e) => {
@@ -53,7 +58,8 @@ const PageRegister = () => {
           username: userNameRegister,
           firstName: firstNameRegister,
           lastName: secondNameRegister,
-          email: emailRegister,
+          email1: emailRegister1,
+          email2: emailRegister2,
           password1: passwordRegister1,
           password2: passwordRegister2,
         },
@@ -70,10 +76,11 @@ const PageRegister = () => {
       setUserNameRegister("");
       setFirstNameRegister("");
       setSecondNameRegister("");
-      setEmailRegister("");
+      setEmailRegister1("");
+      setEmailRegister2("");
       setPasswordRegister1("");
       setPasswordRegister2("");
-      navigate('/');
+      navigate("/");
     }
   };
 
@@ -116,16 +123,25 @@ const PageRegister = () => {
             </div>
 
             <div className="row">
-              <label htmlFor="emailRegister">Email</label>
+              <label htmlFor="emailRegister1">Email</label>
               <input
                 type="text"
-                id="emailregister"
-                value={emailRegister}
-                onChange={handleEmailRegister}
+                id="emailregister1"
+                value={emailRegister1}
+                onChange={handleEmailRegister1}
                 placeholder="Enter your email *"
               />
             </div>
-
+            <div className="row">
+              <label htmlFor="emailRegister2"></label>
+              <input
+                type="text"
+                id="emailregister2"
+                value={emailRegister2}
+                onChange={handleEmailRegister2}
+                placeholder="Enter your email again *"
+              />
+            </div>
             <div className="row">
               <label htmlFor="password">Password1</label>
               <input
