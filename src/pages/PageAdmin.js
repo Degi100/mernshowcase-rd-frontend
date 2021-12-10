@@ -66,6 +66,7 @@ const PageAdmin = () => {
               <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Username</th>
                 <th></th>
               </tr>
             </thead>
@@ -75,6 +76,7 @@ const PageAdmin = () => {
                   <tr key={index}>
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
+                    <td>{user.username}</td>
                     <td>
                       <button
                         onClick={() => handle_approveUserButton(user._id)}

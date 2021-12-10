@@ -25,7 +25,6 @@ function App() {
       );
       if (response.ok) {
         const _currentUser = await response.json();
-        // console.log(_currentUser);
         setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
       }
     })();
@@ -33,16 +32,19 @@ function App() {
 
   return (
     <div className="App">
+      <div>
         <div>
-          <Nav />
-          <Routes>
-            <Route path="/" element={<PageWelcome />} />
-            <Route path="/register" element={<PageRegister />} />
-            <Route path="/admin" element={<PageAdmin />} />
-            <Route path="/login" element={<PageLogin />} />
-            <Route path="/logout" element={<PageLogout />} />
-          </Routes>
+          <h1>MERN Showcase App</h1>
         </div>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<PageWelcome />} />
+          <Route path="/register" element={<PageRegister />} />
+          <Route path="/admin" element={<PageAdmin />} />
+          <Route path="/login" element={<PageLogin />} />
+          <Route path="/logout" element={<PageLogout />} />
+        </Routes>
+      </div>
     </div>
   );
 }

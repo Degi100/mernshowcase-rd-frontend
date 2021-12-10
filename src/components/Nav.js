@@ -8,11 +8,9 @@ const Nav = () => {
   return (
     <nav>
       <ul>
-        {currentUserIsInGroup("loggedOutUsers") && (
-          <li>
-            <NavLink to="/">Welcome</NavLink>
-          </li>
-        )}
+        <li>
+          <NavLink to="/">Welcome</NavLink>
+        </li>
         {currentUserIsInGroup("loggedOutUsers") && (
           <li>
             <NavLink to="/register">Register</NavLink>
@@ -20,7 +18,7 @@ const Nav = () => {
         )}
         {currentUserIsInGroup("admins") && (
           <li>
-            <NavLink to="/admin">Admin</NavLink>
+            <NavLink to="/admin">Admin-Panel</NavLink>
           </li>
         )}
         {currentUserIsInGroup("loggedOutUsers") && (
