@@ -1,9 +1,16 @@
 import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
 
 const PageRegister = () => {
-  const { setCurrentUser, currentUserIsInGroup } = useContext(AppContext);
+  const {
+    setCurrentUser,
+    currentUserIsInGroup,
+    passwordInputType,
+    handleShowPasswordButtonRegister,
+  } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [userNameRegister, setUserNameRegister] = useState("");
@@ -84,13 +91,24 @@ const PageRegister = () => {
     }
   };
 
+  // const showAndHideButton = () => {
+  //   return (
+  //     <button onClick={handleShowPasswordButtonRegister}>
+  //       {passwordInputType === "password" ? (
+  //         <AiFillEye />
+  //       ) : (
+  //         <AiFillEyeInvisible />
+  //       )}
+  //     </button>
+  //   );
+  // };
+
   return (
     <div>
       {currentUserIsInGroup("loggedOutUsers") && (
         <form>
           <fieldset>
             <legend>Register</legend>
-            <div></div>
             <div className="row">
               <label htmlFor="firstname">Name</label>
               <input
@@ -145,22 +163,31 @@ const PageRegister = () => {
             <div className="row">
               <label htmlFor="password">Password1</label>
               <input
-                type="password"
+                type={passwordInputType}
                 id="passwordRegister1"
                 value={passwordRegister1}
                 onChange={handlePasswordRegister1}
-                placeholder="Enter your password *"
+                placeholder="YOUR PW"
               />
             </div>
             <div className="row">
               <label htmlFor="password">Password2</label>
               <input
-                type="password"
+                type={passwordInputType}
                 id="passwordRegister2"
                 value={passwordRegister2}
                 onChange={handlePasswordRegister2}
-                placeholder="Your password same like the first one *"
+                placeholder="Repeat your password *"
               />
+              <div className="passwordIcon">
+              <span onClick={handleShowPasswordButtonRegister}>
+                {passwordInputType === "password" ? (
+                  <AiFillEye />
+                ) : (
+                  <AiFillEyeInvisible />
+                )}
+              </span>
+              </div>
             </div>
             <div className="buttonRow">
               <button onClick={handleRegisterButton}>Register</button>
