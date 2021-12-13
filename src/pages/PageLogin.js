@@ -27,7 +27,7 @@ const PageLogin = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     };
-    const response = await fetch("http://localhost:3003/login", requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, requestOptions);
     if (!response.ok) {
       setUsername("");
       setPassword("");

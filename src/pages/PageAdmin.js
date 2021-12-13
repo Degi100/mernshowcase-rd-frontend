@@ -29,7 +29,7 @@ const PageAdmin = () => {
       body: JSON.stringify({ id }),
     };
     const response = await fetch(
-      "http://localhost:3003/approveuser",
+      `${process.env.REACT_APP_BACKEND_URL}/approveuser`,
       requestOptions
     );
     if (response.ok) {
@@ -44,7 +44,7 @@ const PageAdmin = () => {
       credentials: "include",
     };
     const response = await fetch(
-      "http://localhost:3003/notyetapprovedusers",
+      `${process.env.REACT_APP_BACKEND_URL}notyetapprovedusers`,
       requestOptions
     );
     if (response.ok) {
@@ -58,7 +58,7 @@ const PageAdmin = () => {
       method: "GET",
       credentials: "include",
     };
-    const response = await fetch("http://localhost:3003/username", requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/username`, requestOptions);
     if (response.ok) {
       const data = await response.json();
       setLoadAllUsers((prev) => [...data.users]);
@@ -66,7 +66,7 @@ const PageAdmin = () => {
   };
 
   const handle_deleteuser = async (id) => {
-    const response = await fetch("http://localhost:3003/deleteuser", {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/deleteuser`, {
       method: "delete",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

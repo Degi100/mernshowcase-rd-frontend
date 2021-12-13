@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import { useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
@@ -8,6 +9,9 @@ import PageLogout from "./pages/PageLogout";
 import PageAdmin from "./pages/PageAdmin";
 import AppContext from "./AppContext";
 import "./App.scss";
+
+dotenv.config();
+const backend_env = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   // const { setCurrentUser, currentUser, currentUserIsInGroup } =
@@ -20,7 +24,7 @@ function App() {
         credentials: "include",
       };
       const response = await fetch(
-        "http://localhost:3003/currentuser",
+        `${backend_env}/currentuser`,
         requestOptions
       );
       if (response.ok) {

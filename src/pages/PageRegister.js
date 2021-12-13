@@ -67,7 +67,7 @@ const PageRegister = () => {
     };
 
     const response = await fetch(
-      "http://localhost:3003/createuser",
+      `${process.env.REACT_APP_BACKEND_URL}/createuser`,
       requestOptions
     );
     if (response.ok) {
