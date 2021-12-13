@@ -14,8 +14,8 @@ dotenv.config();
 const backend_env = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
-  // const { setCurrentUser, currentUser, currentUserIsInGroup } =
-  const { setCurrentUser } = useContext(AppContext);
+  // const { setCurrentUser, currentUser, currentUserIsInGroup } =  useContext(AppContext);
+  const { setCurrentUser } =
 
   useEffect(() => {
     (async () => {
