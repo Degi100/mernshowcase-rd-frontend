@@ -58,12 +58,13 @@ const PageLogin = () => {
             <legend>Login</legend>
             <div>{loginFormMessage}</div>
             <div className="row">
-              <label htmlFor="username">Name</label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 id="username"
                 value={username}
                 onChange={handleUsername}
+                placeholder="Enter your username"
               />
             </div>
             <div className="row">
@@ -73,6 +74,7 @@ const PageLogin = () => {
                 id="password"
                 onChange={handlePassword}
                 value={password}
+                placeholder="Enter your password"
               />
               <div className="passwordIcon">
                 <span onClick={handleShowPasswordButtonRegister}>

@@ -124,7 +124,7 @@ const PageRegister = () => {
                 id="username"
                 value={userNameRegister}
                 onChange={handleUserNameRegister}
-                placeholder="Enter your username *"
+                placeholder="Enter your username*"
               />
             </div>
 
@@ -135,7 +135,7 @@ const PageRegister = () => {
                 id="emailregister1"
                 value={emailRegister1}
                 onChange={handleEmailRegister1}
-                placeholder="Enter your email *"
+                placeholder="Enter your email*"
               />
             </div>
             <div className="row">
@@ -145,27 +145,27 @@ const PageRegister = () => {
                 id="emailregister2"
                 value={emailRegister2}
                 onChange={handleEmailRegister2}
-                placeholder="Enter your email again *"
+                placeholder="Enter your email again*"
               />
             </div>
             <div className="row">
-              <label htmlFor="password">Password1</label>
+              <label htmlFor="password">Password 1</label>
               <input
                 type={passwordInputType}
                 id="passwordRegister1"
                 value={passwordRegister1}
                 onChange={handlePasswordRegister1}
-                placeholder="YOUR PW"
+                placeholder="Password*"
               />
             </div>
             <div className="row">
-              <label htmlFor="password">Password2</label>
+              <label htmlFor="password">Password 2</label>
               <input
                 type={passwordInputType}
                 id="passwordRegister2"
                 value={passwordRegister2}
                 onChange={handlePasswordRegister2}
-                placeholder="Repeat your password *"
+                placeholder="Repeat your password*"
               />
               <div className="passwordIcon">
               <span onClick={handleShowPasswordButtonRegister}>

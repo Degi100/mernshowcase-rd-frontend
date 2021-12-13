@@ -57,27 +57,24 @@ body {
         border: 5px solid #ccc;
         border-radius: 5px;
         padding: 50px;
-		
-		.passwordIcon {
-			color: rgb(158, 153, 153);
-			margin-left: -35px;
-			cursor: pointer;
-			margin-top: 5px;
-		}
+
+        .passwordIcon {
+          color: rgb(158, 153, 153);
+          margin-left: -35px;
+          cursor: pointer;
+          margin-top: 5px;
+        }
 
         .row {
           display: flex;
           align-content: flex-start;
           padding: 5px;
           label {
-            &::after {
-              content: ":";
-            }
             width: 130px;
             margin: 0 0 10px 0;
           }
           input {
-            font-size: 1rem;
+            font-size: 1.3rem;
             width: 300px;
           }
         }
