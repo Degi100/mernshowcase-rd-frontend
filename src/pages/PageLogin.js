@@ -1,21 +1,22 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../AppContext.js";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
 
 const PageLogin = () => {
-  const { setCurrentUser, currentUserIsInGroup } =
-    useContext(AppContext);
+  const {
+    setCurrentUser,
+    currentUserIsInGroup,
+    passwordInputType,
+    handleShowPasswordButtonRegister,
+  } = useContext(AppContext);
+
   const [loginFormMessage, setLoginFormMessage] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [passwordsInputType, setPasswordsInputType] = useState("password");
 
-  const handleShowPasswordButton = () => {
-    setPasswordsInputType(
-      passwordsInputType === "password" ? "text" : "password"
-    );
-  };
   const handleUsername = (e) => {
     const _username = e.target.value;
     setUsername(_username);
@@ -68,15 +69,19 @@ const PageLogin = () => {
             <div className="row">
               <label htmlFor="password">Password</label>
               <input
-                type={passwordsInputType}
+                type={passwordInputType}
                 id="password"
                 onChange={handlePassword}
                 value={password}
               />
-              <div className="buttonRow">
-                <button type="button" onClick={handleShowPasswordButton}>
-                  {passwordsInputType === "password" ? "show" : "hide"}
-                </button>
+              <div className="passwordIcon">
+                <span onClick={handleShowPasswordButtonRegister}>
+                  {passwordInputType === "password" ? (
+                    <AiFillEye />
+                  ) : (
+                    <AiFillEyeInvisible />
+                  )}
+                </span>
               </div>
             </div>
             <div className="buttonRow">

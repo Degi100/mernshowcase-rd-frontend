@@ -91,18 +91,6 @@ const PageRegister = () => {
     }
   };
 
-  // const showAndHideButton = () => {
-  //   return (
-  //     <button onClick={handleShowPasswordButtonRegister}>
-  //       {passwordInputType === "password" ? (
-  //         <AiFillEye />
-  //       ) : (
-  //         <AiFillEyeInvisible />
-  //       )}
-  //     </button>
-  //   );
-  // };
-
   return (
     <div>
       {currentUserIsInGroup("loggedOutUsers") && (
