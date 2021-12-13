@@ -5,7 +5,8 @@ const PageAdmin = () => {
   const { currentUserIsInGroup } = useContext(AppContext);
 
   const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
-  const [loadAllUsers1, setLoadAllUsers] = useState([]);
+  const [ setLoadAllUsers] = useState([]);
+  // const [loadAllUsers1, setLoadAllUsers] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -17,7 +18,8 @@ const PageAdmin = () => {
     (async () => {
       loadAllUsers();
     })();
-  }, []);
+  },);
+  // }, []);
 
   const handle_approveUserButton = async (id) => {
     const requestOptions = {
