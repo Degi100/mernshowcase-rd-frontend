@@ -35,7 +35,6 @@ const PageLogin = () => {
     } else {
       const _currentUser = await response.json();
       setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
-      console.log(_currentUser);
       navigate("/");
     }
   };
