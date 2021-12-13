@@ -5,7 +5,7 @@ const PageAdmin = () => {
   const { currentUserIsInGroup } = useContext(AppContext);
 
   const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
-  const [ setLoadAllUsers] = useState([]);
+  const [setLoadAllUsers] = useState([]);
   // const [loadAllUsers1, setLoadAllUsers] = useState([]);
 
   useEffect(() => {
@@ -14,11 +14,11 @@ const PageAdmin = () => {
     })();
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     (async () => {
       loadAllUsers();
     })();
-  },);
+  });
   // }, []);
 
   const handle_approveUserButton = async (id) => {
@@ -44,7 +44,7 @@ const PageAdmin = () => {
       credentials: "include",
     };
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}notyetapprovedusers`,
+      `${process.env.REACT_APP_BACKEND_URL}/notyetapprovedusers`,
       requestOptions
     );
     if (response.ok) {
@@ -58,7 +58,10 @@ const PageAdmin = () => {
       method: "GET",
       credentials: "include",
     };
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/username`, requestOptions);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/username`,
+      requestOptions
+    );
     if (response.ok) {
       const data = await response.json();
       setLoadAllUsers((prev) => [...data.users]);
@@ -66,12 +69,15 @@ const PageAdmin = () => {
   };
 
   const handle_deleteuser = async (id) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/deleteuser`, {
-      method: "delete",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/deleteuser`,
+      {
+        method: "delete",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      }
+    );
     if (response.ok) {
       loadNotYetApprovedUsers();
     }
@@ -83,7 +89,7 @@ const PageAdmin = () => {
         <div className="panel">
           <h3>Content Editor Section:</h3>
           ShowAllUsers:
-           <h4>{loadAllUsers.length} Users</h4>
+          <h4>{loadAllUsers.length} Users</h4>
           <div>
             <button>Edit Welcome Page</button>
           </div>
