@@ -33,6 +33,7 @@ const PageRegister = () => {
   const handleUserNameRegister = (e) => {
     const userNameRegister = e.target.value;
     setUserNameRegister(userNameRegister);
+
   };
   const handleEmailRegister1 = (e) => {
     const emailRegister1 = e.target.value;
@@ -98,6 +99,16 @@ const PageRegister = () => {
           <fieldset>
             <legend>Register</legend>
             <div className="row">
+              <label htmlFor="userName">Username</label>
+              <input
+                type="text"
+                id="username"
+                value={userNameRegister}
+                onChange={handleUserNameRegister}
+                placeholder="Enter your username*"
+              />
+            </div>
+            <div className="row">
               <label htmlFor="firstname">Name</label>
               <input
                 type="text"
@@ -117,16 +128,6 @@ const PageRegister = () => {
                 placeholder="Enter your lastname"
               />
             </div>
-            <div className="row">
-              <label htmlFor="userName">Username</label>
-              <input
-                type="text"
-                id="username"
-                value={userNameRegister}
-                onChange={handleUserNameRegister}
-                placeholder="Enter your username*"
-              />
-            </div>
 
             <div className="row">
               <label htmlFor="emailRegister1">Email</label>
@@ -138,6 +139,7 @@ const PageRegister = () => {
                 placeholder="Enter your email*"
               />
             </div>
+
             <div className="row">
               <label htmlFor="emailRegister2"></label>
               <input
@@ -159,7 +161,7 @@ const PageRegister = () => {
               />
             </div>
             <div className="row">
-              <label htmlFor="password">Password 2</label>
+              <label htmlFor="password"></label>
               <input
                 type={passwordInputType}
                 id="passwordRegister2"
@@ -168,17 +170,18 @@ const PageRegister = () => {
                 placeholder="Repeat your password*"
               />
               <div className="passwordIcon">
-              <span onClick={handleShowPasswordButtonRegister}>
-                {passwordInputType === "password" ? (
-                  <AiFillEye />
-                ) : (
-                  <AiFillEyeInvisible />
-                )}
-              </span>
+                <span onClick={handleShowPasswordButtonRegister}>
+                  {passwordInputType === "password" ? (
+                    <AiFillEye />
+                  ) : (
+                    <AiFillEyeInvisible />
+                  )}
+                </span>
               </div>
             </div>
             <div className="buttonRow">
               <button onClick={handleRegisterButton}>Register</button>
+                      
               <div className="buttonRow">
                 <button>Reset</button>
               </div>
