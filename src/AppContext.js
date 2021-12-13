@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({accessGroups: 'loggedOutUsers'});
-
+  
   const currentUserIsInGroup = (accessGroup) => {
     const accessGroupArray = currentUser.accessGroups
       .split(",")

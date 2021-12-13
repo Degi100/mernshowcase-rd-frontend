@@ -3,12 +3,19 @@ import { useNavigate } from "react-router-dom";
 import AppContext from "../AppContext.js";
 
 const PageLogin = () => {
-  const { setCurrentUser, currentUserIsInGroup } = useContext(AppContext);
+  const { setCurrentUser, currentUserIsInGroup } =
+    useContext(AppContext);
   const [loginFormMessage, setLoginFormMessage] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [passwordsInputType, setPasswordsInputType] = useState("password");
 
+  const handleShowPasswordButton = () => {
+    setPasswordsInputType(
+      passwordsInputType === "password" ? "text" : "password"
+    );
+  };
   const handleUsername = (e) => {
     const _username = e.target.value;
     setUsername(_username);
@@ -27,7 +34,10 @@ const PageLogin = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     };
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, requestOptions);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/login`,
+      requestOptions
+    );
     if (!response.ok) {
       setUsername("");
       setPassword("");
@@ -58,14 +68,21 @@ const PageLogin = () => {
             <div className="row">
               <label htmlFor="password">Password</label>
               <input
-                type="password"
+                type={passwordsInputType}
                 id="password"
                 onChange={handlePassword}
                 value={password}
               />
+              <div className="buttonRow">
+                <button type="button" onClick={handleShowPasswordButton}>
+                  {passwordsInputType === "password" ? "show" : "hide"}
+                </button>
+              </div>
             </div>
             <div className="buttonRow">
-              <button type='submit' onClick={handleLoginButton}>Login</button>
+              <button type="submit" onClick={handleLoginButton}>
+                Login
+              </button>
             </div>
           </fieldset>
         </form>
