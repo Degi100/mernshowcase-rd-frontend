@@ -11,8 +11,7 @@ import "./App.scss";
 
 function App() {
   // const { setCurrentUser, currentUser, currentUserIsInGroup } =
-  const { setCurrentUser } =
-    useContext(AppContext);
+  const { setCurrentUser } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
