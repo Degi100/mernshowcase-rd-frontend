@@ -3,11 +3,19 @@ import AppContext from "../AppContext.js";
 
 const PageAdmin = () => {
   const { currentUserIsInGroup } = useContext(AppContext);
+
   const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
+  const [loadAllUsers1, setLoadAllUsers] = useState([]);
 
   useEffect(() => {
     (async () => {
       loadNotYetApprovedUsers();
+    })();
+  }, []);
+
+    useEffect(() => {
+    (async () => {
+      loadAllUsers();
     })();
   }, []);
 
@@ -27,32 +35,44 @@ const PageAdmin = () => {
       loadNotYetApprovedUsers();
     }
   };
-    const loadNotYetApprovedUsers = async () => {
-      const requestOptions = {
-        method: "GET",
-        credentials: "include",
-      };
-      const response = await fetch(
-        "http://localhost:3003/notyetapprovedusers",
-        requestOptions
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setNotYetApprovedUsers((prev) => [...data.users]);
-      }
-};
 
-  const handle_deleteuser = async(id) => {
+  const loadNotYetApprovedUsers = async () => {
+    const requestOptions = {
+      method: "GET",
+      credentials: "include",
+    };
+    const response = await fetch(
+      "http://localhost:3003/notyetapprovedusers",
+      requestOptions
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setNotYetApprovedUsers((prev) => [...data.users]);
+    }
+  };
+
+  const loadAllUsers = async () => {
+    const requestOptions = {
+      method: "GET",
+      credentials: "include",
+    };
+    const response = await fetch("http://localhost:3003/username", requestOptions);
+    if (response.ok) {
+      const data = await response.json();
+      setLoadAllUsers((prev) => [...data.users]);
+    }
+  };
+
+  const handle_deleteuser = async (id) => {
     const response = await fetch("http://localhost:3003/deleteuser", {
       method: "delete",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
-    if(response.ok){
+    if (response.ok) {
       loadNotYetApprovedUsers();
     }
-
   };
 
   return (
@@ -60,6 +80,8 @@ const PageAdmin = () => {
       {currentUserIsInGroup("admins") && (
         <div className="panel">
           <h3>Content Editor Section:</h3>
+          ShowAllUsers:
+           <h4>{loadAllUsers.length} Users</h4>
           <div>
             <button>Edit Welcome Page</button>
           </div>
