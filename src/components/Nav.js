@@ -31,11 +31,10 @@ const Nav = () => {
             <NavLink to="/logout">Logout</NavLink>
           </li>
         )}
-              <li>  {currentUser.username && (
-          <h5>
-            Hello {currentUser.username}           </h5>
-        )}
-</li>
+        <li>
+          {" "}
+          {currentUser.username && <h5>Hello {currentUser.username} </h5>}
+        </li>
       </ul>
     </nav>
   );
