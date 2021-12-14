@@ -10,11 +10,6 @@ const PageWelcome = () => {
         {currentUserIsInGroup("loggedOutUsers") && (
           <div className="panel">Welcome to this site.</div>
         )}
-        {currentUser.username && (
-          <h2>
-            Current User: {currentUser.firstName} {currentUser.lastName}
-          </h2>
-        )}
 
         {currentUserIsInGroup("members") && (
           <div className="panel">
