@@ -6,8 +6,8 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({
     accessGroups: "loggedOutUsers",
   });
-  const [passwordInputType, setPasswordInputType] = useState("password");
 
+  const [passwordInputType, setPasswordInputType] = useState("password");
   const handleShowPasswordButtonRegister = () => {
     setPasswordInputType(
       passwordInputType === "password" ? "text" : "password"
