@@ -13,12 +13,9 @@ const PageWelcome = () => {
 
         {currentUserIsInGroup("members") && (
           <div className="panel">
-            <h3>Current Site News for Members</h3>
+            <h3>Hello VIPS</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque
-              explicabo voluptate quia asperiores sit! Vel molestiae labore
-              ratione non dolores? Exercitationem soluta quo id laboriosam,
-              autem perferendis? Fuga, suscipit ipsa.
+              You are the best and fck the rest!
             </p>
           </div>
         )}
