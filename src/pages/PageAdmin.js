@@ -3,14 +3,30 @@ import AppContext from "../AppContext.js";
 
 const PageAdmin = () => {
   const { currentUserIsInGroup } = useContext(AppContext);
-  const [ notYetApprovedUsers, setNotYetApprovedUsers ] = useState([]);
-  // const [loadAllUsers1, setLoadAllUsers] = useState([]);
+  const [notYetApprovedUsers, setNotYetApprovedUsers] = useState([]);
+  const [showAllUsers, setShowAllUsers] = useState([]);
 
   useEffect(() => {
     (async () => {
       loadNotYetApprovedUsers();
+      loadAllUsers();
     })();
   }, []);
+
+  const loadAllUsers = async () => {
+    const requestOptions = {
+      method: "GET",
+      credentials: "include",
+    };
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/users`,
+      requestOptions
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setShowAllUsers(data);
+    }
+  };
 
   const handle_approveUserButton = async (id) => {
     const requestOptions = {
@@ -43,7 +59,6 @@ const PageAdmin = () => {
       setNotYetApprovedUsers((prev) => [...data.users]);
     }
   };
-
 
   const handle_deleteuser = async (id) => {
     const response = await fetch(
@@ -112,7 +127,7 @@ const PageAdmin = () => {
               })}
             </tbody>
           </table>
-          <div className="showAllUsers"><h3>Show all Users</h3></div>
+          <h4>{showAllUsers.length} Users</h4>
           <table className="minimalListBlack">
             <thead>
               <tr>
@@ -123,18 +138,13 @@ const PageAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              {notYetApprovedUsers.map((user, index) => {
+              {showAllUsers.map((user, index) => {
                 return (
                   <tr key={index}>
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
                     <td>{user.username}</td>
                     <td>
-                      <button
-                        onClick={() => handle_approveUserButton(user._id)}
-                      >
-                        Approve
-                      </button>
                       <div>
                         <button onClick={() => handle_deleteuser(user._id)}>
                           Delete users
