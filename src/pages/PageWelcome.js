@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AppContext from "../AppContext";
 
 const PageWelcome = () => {
-  const { currentUser, currentUserIsInGroup } = useContext(AppContext);
+  const { currentUserIsInGroup } = useContext(AppContext);
   return (
     <div>
 
