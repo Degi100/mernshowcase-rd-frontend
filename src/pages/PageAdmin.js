@@ -85,8 +85,8 @@ const PageAdmin = () => {
 
   return (
     <div>
-      {currentUserIsInGroup("admins") && (
-        <div className="panel">
+    {currentUserIsInGroup("admins") && (
+      <div className="panel">
           <h3>Content Editor Section:</h3>
           ShowAllUsers:
           <h4>{loadAllUsers.length} Users</h4>
@@ -134,10 +134,10 @@ const PageAdmin = () => {
                   </tr>
                 );
               })}
-            </tbody>
-          </table>
-          <div>
-            <button>Create users</button>
+              </tbody>
+              </table>
+              <div>
+              <button>Create users</button>
           </div>
           <div>
             <button>Edit users</button>

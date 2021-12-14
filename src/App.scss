@@ -51,7 +51,7 @@ body {
     form {
       width: 650px;
       .note.invalid {
-        color: red;
+        color: rgb(0, 0, 0);
       }
       fieldset {
         border: 5px solid #ccc;
@@ -83,7 +83,7 @@ body {
           margin: 0 0 20px 97px;
         }
         .invalid input {
-          color: red;
+          color: rgb(0, 0, 0);
         }
 
         .buttonRow {
@@ -103,6 +103,61 @@ body {
       margin: 10px 0 0 0;
       padding: 20px;
       border-radius: 5px;
+      
+     
+  
+      table {
+        border: 2px solid #000000;
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+        color: rgb(0, 0, 0);
+      }
+      table td,
+      table th {
+        border: 1px solid #888;
+        padding: 5px 4px;
+      }
+      table tbody td {
+        font-size: 13px;
+      }
+      table thead {
+        background: #cfcfcf;
+        background: -moz-linear-gradient(
+          top,
+          #dbdbdb 0%,
+          #d3d3d3 66%,
+          #cfcfcf 100%
+        );
+        background: -webkit-linear-gradient(
+          top,
+          #dbdbdb 0%,
+          #d3d3d3 66%,
+          #cfcfcf 100%
+        );
+        background: linear-gradient(
+          to bottom,
+          #dbdbdb 0%,
+          #d3d3d3 66%,
+          #cfcfcf 100%
+        );
+        border-bottom: 1px solid #888;
+      }
+      table thead th {
+        font-size: 15px;
+        font-weight: bold;
+        color: #000000;
+        text-align: left;
+      }
+      table tfoot {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000000;
+        border-top: 1px solid #888;
+      }
+      table tfoot td {
+        font-size: 14px;
+      }
     }
     h3 {
       margin: 0 0 20px 0;
@@ -116,59 +171,9 @@ body {
     }
     h5 {
       font-size: 1rem;
+
       color: white;
       padding: 6px;
-    }
-table.minimalistBlack {
-      border: 1px solid #000000;
-      width: 100%;
-      text-align: left;
-      border-collapse: collapse;
-    }
-    table.minimalistBlack td,
-    table.minimalistBlack th {
-      border: 1px solid #888;
-      padding: 5px 4px;
-    }
-    table.minimalistBlack tbody td {
-      font-size: 13px;
-    }
-    table.minimalistBlack thead {
-      background: #cfcfcf;
-      background: -moz-linear-gradient(
-        top,
-        #dbdbdb 0%,
-        #d3d3d3 66%,
-        #cfcfcf 100%
-      );
-      background: -webkit-linear-gradient(
-        top,
-        #dbdbdb 0%,
-        #d3d3d3 66%,
-        #cfcfcf 100%
-      );
-      background: linear-gradient(
-        to bottom,
-        #dbdbdb 0%,
-        #d3d3d3 66%,
-        #cfcfcf 100%
-      );
-      border-bottom: 1px solid #888;
-    }
-    table.minimalistBlack thead th {
-      font-size: 15px;
-      font-weight: bold;
-      color: #000000;
-      text-align: left;
-    }
-    table.minimalistBlack tfoot {
-      font-size: 14px;
-      font-weight: bold;
-      color: #000000;
-      border-top: 1px solid #888;
-    }
-    table.minimalistBlack tfoot td {
-      font-size: 14px;
     }
     .content {
       background-color: #ccc;
