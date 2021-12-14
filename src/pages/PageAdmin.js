@@ -72,6 +72,7 @@ const PageAdmin = () => {
     );
     if (response.ok) {
       loadNotYetApprovedUsers();
+      loadAllUsers();
     }
   };
 
