@@ -13,9 +13,9 @@ const PageWelcome = () => {
 
         {currentUserIsInGroup("members") && (
           <div className="panel">
-            <h3>Hello VIPS</h3>
+            <h3>Hello Members</h3>
             <p>
-              You are the best and fck the rest!
+              Members Club
             </p>
           </div>
         )}
