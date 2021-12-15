@@ -1,16 +1,12 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
-import { AiFillEyeInvisible } from "react-icons/ai";
-import { AiFillEye } from "react-icons/ai";
+import ValidationCheck from "../components/ValidationCheck";
+import PasswordDisplayer from "../components/PasswordDisplayer";
 
 const PageRegister = () => {
-  const {
-    setCurrentUser,
-    currentUserIsInGroup,
-    passwordInputType,
-    handleShowPasswordButtonRegister,
-  } = useContext(AppContext);
+  const { setCurrentUser, currentUserIsInGroup, passwordInputType } =
+    useContext(AppContext);
   const navigate = useNavigate();
 
   const [userNameRegister, setUserNameRegister] = useState("");
@@ -62,14 +58,14 @@ const PageRegister = () => {
 
   const handleFirstNameRegister = (e) => {
     const _firstNameRegister = e.target.value;
-    const userformat = /^[a-z]{2,15}$/gi;
+    const userformat = /^[a-z]{1,15}$/gi;
     setFirstNameRegister(_firstNameRegister);
     setFirstNameIsValid(userformat.test(_firstNameRegister));
   };
 
   const handleSecondNameRegister = (e) => {
     const _secondNameRegister = e.target.value;
-    const userformat = /^[a-z]{2,15}$/gi;
+    const userformat = /^[a-z]{1,15}$/gi;
     setSecondNameRegister(_secondNameRegister);
     setSecondNameIsValid(userformat.test(_secondNameRegister));
   };
@@ -153,6 +149,7 @@ const PageRegister = () => {
                 onChange={handleUserNameRegister}
                 placeholder="Username, User-name"
               />
+              <ValidationCheck isValid={userNameIsValid} />
             </div>
             <div
               className={`note ${userNameIsValid ? "valid" : "invalid"}`}
@@ -167,6 +164,7 @@ const PageRegister = () => {
                 onChange={handleFirstNameRegister}
                 placeholder="John"
               />
+              <ValidationCheck isValid={firstNameIsValid} />
             </div>
 
             <div className={`row ${secondNameIsValid ? "valid" : "invalid"}`}>
@@ -178,6 +176,7 @@ const PageRegister = () => {
                 onChange={handleSecondNameRegister}
                 placeholder="Doe"
               />
+              <ValidationCheck isValid={secondNameIsValid} />
             </div>
 
             <div className={`row ${email1IsValid ? "valid" : "invalid"}`}>
@@ -207,39 +206,21 @@ const PageRegister = () => {
             <div
               className={`note ${email1IsValid ? "valid" : "invalid"}`}
             ></div>
-
-            <div className={`row ${password1IsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="password">Password</label>
-              <input
-                type={passwordInputType}
-                id="passwordRegister1"
-                value={passwordRegister1}
-                onChange={handlePasswordRegister1}
-                placeholder="min. 8 char, 1 letter, 1 number"
-              />
-            </div>
-            <div
-              className={`note ${password1IsValid ? "valid" : "invalid"}`}
-            ></div>
+       
+            <PasswordDisplayer
+              value={passwordRegister1}
+              valueHandler={handlePasswordRegister1}
+              isValid={password1IsValid}
+            />
+            
+            <PasswordDisplayer
+              value={passwordRegister2}
+              valueHandler={handlePasswordRegister2}
+              isValid={password2IsValid}
+            />
 
             <div className={`row ${password2IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="password"></label>
-              <input
-                type={passwordInputType}
-                id="passwordRegister2"
-                value={passwordRegister2}
-                onChange={handlePasswordRegister2}
-                placeholder="Repeat your password*"
-              />
-              <div className="passwordIcon">
-                <span onClick={handleShowPasswordButtonRegister}>
-                  {passwordInputType === "password" ? (
-                    <AiFillEye />
-                  ) : (
-                    <AiFillEyeInvisible />
-                  )}
-                </span>
-              </div>
               <div
                 className={`note ${password2IsValid ? "valid" : "invalid"}`}
               ></div>

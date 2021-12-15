@@ -7,12 +7,6 @@ export const AppProvider = ({ children }) => {
     accessGroups: "loggedOutUsers",
   });
 
-  const [passwordInputType, setPasswordInputType] = useState("password");
-  const handleShowPasswordButtonRegister = () => {
-    setPasswordInputType(
-      passwordInputType === "password" ? "text" : "password"
-    );
-  };
 
   const currentUserIsInGroup = (accessGroup) => {
     const accessGroupArray = currentUser.accessGroups
@@ -27,9 +21,6 @@ export const AppProvider = ({ children }) => {
         currentUser,
         setCurrentUser,
         currentUserIsInGroup,
-        passwordInputType,
-        setPasswordInputType,
-        handleShowPasswordButtonRegister,
       }}
     >
       {children}
