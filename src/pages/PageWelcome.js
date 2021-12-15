@@ -20,7 +20,7 @@ const PageWelcome = () => {
               Welcome to our Members Club.
             </p>
             <div className="news"><span>BRANDNEW: </span>
-            TODO APP Beta Version 1.5 is online!!!!</div>
+            Taskmanager APP Beta Version 1.5 is online!!!!</div>
            
           </div>
         )}

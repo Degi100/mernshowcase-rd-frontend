@@ -23,7 +23,7 @@ const Nav = () => {
         )}
   {currentUserIsInGroup("members") && (
           <li>
-            <NavLink to="/todo">Todo-App</NavLink>
+            <NavLink to="/todo">Taskmanager</NavLink>
           </li>
         )}
 
