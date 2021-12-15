@@ -5,7 +5,7 @@ import ValidationCheck from "../components/ValidationCheck";
 import PasswordDisplayer from "../components/PasswordDisplayer";
 
 const PageRegister = () => {
-  const { setCurrentUser, currentUserIsInGroup, passwordInputType } =
+  const { setCurrentUser, currentUserIsInGroup} =
     useContext(AppContext);
   const navigate = useNavigate();
 
@@ -188,6 +188,7 @@ const PageRegister = () => {
                 onChange={handleEmailRegister1}
                 placeholder="example@yourprovider.com"
               />
+              <ValidationCheck isValid={email1IsValid} />
             </div>
             <div
               className={`note ${email1IsValid ? "valid" : "invalid"}`}
@@ -201,7 +202,8 @@ const PageRegister = () => {
                 value={emailRegister2}
                 onChange={handleEmailRegister2}
                 placeholder="example@yourprovider.com"
-              />
+                />
+                <ValidationCheck isValid={email2IsValid} />
             </div>
             <div
               className={`note ${email1IsValid ? "valid" : "invalid"}`}
@@ -211,7 +213,7 @@ const PageRegister = () => {
               value={passwordRegister1}
               valueHandler={handlePasswordRegister1}
               isValid={password1IsValid}
-            />
+              />
 
             <PasswordDisplayer
               value={passwordRegister2}

@@ -7,13 +7,13 @@ const PasswordDisplayer = (props) => {
 
   return (
     <div className={`row ${props.isValid ? "valid" : "invalid"}`}>
-      <label htmlFor="passwordRegister2"></label>
+      <label htmlFor="passwordRegister1">Password</label>
       <input
         type={showingPassword ? "text" : "password"}
-        id="passwordRegister2"
+        id="passwordRegister1"
         value={props.value}
         onChange={props.valueHandler}
-        placeholder="Repeat your password*"
+        placeholder="8 Char 1 letter and 1 num"
       />
       <span className="passwordIcon" onClick={() => setShowingPassword(!showingPassword)}>
         {showingPassword && <AiFillEye />}
