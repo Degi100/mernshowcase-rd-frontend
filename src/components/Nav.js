@@ -38,7 +38,6 @@ const Nav = () => {
           </li>
         )}
         <li>
-          {" "}
           {currentUser.username && <h5>Hello {currentUser.username} </h5>}
         </li>
       </ul>
