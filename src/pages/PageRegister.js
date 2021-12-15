@@ -206,13 +206,13 @@ const PageRegister = () => {
             <div
               className={`note ${email1IsValid ? "valid" : "invalid"}`}
             ></div>
-       
+
             <PasswordDisplayer
               value={passwordRegister1}
               valueHandler={handlePasswordRegister1}
               isValid={password1IsValid}
             />
-            
+
             <PasswordDisplayer
               value={passwordRegister2}
               valueHandler={handlePasswordRegister2}
