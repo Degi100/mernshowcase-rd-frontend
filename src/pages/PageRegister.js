@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
 import { AiFillEyeInvisible } from "react-icons/ai";
@@ -21,38 +21,84 @@ const PageRegister = () => {
   const [passwordRegister1, setPasswordRegister1] = useState("");
   const [passwordRegister2, setPasswordRegister2] = useState("");
 
+  const [email1IsValid, setEmail1IsValid] = useState(false);
+  const [userNameIsValid, setUserNameIsValid] = useState(false);
+  const [firstNameIsValid, setFirstNameIsValid] = useState(false);
+  const [secondNameIsValid, setSecondNameIsValid] = useState(false);
+  const [email2IsValid, setEmail2IsValid] = useState(false);
+  const [password1IsValid, setPassword1IsValid] = useState(false);
+  const [password2IsValid, setPassword2IsValid] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  useEffect(() => {
+    setFormIsValid(
+      email1IsValid &&
+        email2IsValid &&
+        userNameIsValid &&
+        firstNameIsValid &&
+        secondNameIsValid &&
+        password1IsValid &&
+        password2IsValid
+      //   passwordRegister1 === passwordRegister2
+    );
+  }, [
+    userNameIsValid,
+    firstNameIsValid,
+    secondNameIsValid,
+    email1IsValid,
+    email2IsValid,
+    password1IsValid,
+    password2IsValid,
+    passwordRegister1,
+    passwordRegister2,
+  ]);
+
+  const handleUserNameRegister = (e) => {
+    const _userNameRegister = e.target.value;
+    const userformat = /^[a-z0-9_-]{3,15}$/gi;
+    setUserNameRegister(_userNameRegister);
+    setUserNameIsValid(userformat.test(_userNameRegister));
+  };
+
   const handleFirstNameRegister = (e) => {
-    const firstNameRegister = e.target.value;
-    setFirstNameRegister(firstNameRegister);
+    const _firstNameRegister = e.target.value;
+    const userformat = /^[a-z]{2,15}$/gi;
+    setFirstNameRegister(_firstNameRegister);
+    setFirstNameIsValid(userformat.test(_firstNameRegister));
   };
 
   const handleSecondNameRegister = (e) => {
-    const secondNameRegister = e.target.value;
-    setSecondNameRegister(secondNameRegister);
+    const _secondNameRegister = e.target.value;
+    const userformat = /^[a-z]{2,15}$/gi;
+    setSecondNameRegister(_secondNameRegister);
+    setSecondNameIsValid(userformat.test(_secondNameRegister));
   };
-  const handleUserNameRegister = (e) => {
-    const userNameRegister = e.target.value;
-    setUserNameRegister(userNameRegister);
 
-  };
   const handleEmailRegister1 = (e) => {
-    const emailRegister1 = e.target.value;
-    setEmailRegister1(emailRegister1);
+    const _emailRegister1 = e.target.value;
+    const mailformat = /^[a-z0-9_.-]{2,}@[a-z.]{2,}\.[a-z]{2,}$/gi;
+    setEmailRegister1(_emailRegister1);
+    setEmail1IsValid(mailformat.test(_emailRegister1));
   };
 
   const handleEmailRegister2 = (e) => {
-    const emailRegister2 = e.target.value;
-    setEmailRegister2(emailRegister2);
+    const _emailRegister2 = e.target.value;
+    const mailformat = /^[a-z0-9_.-]{2,}@[a-z.]{2,}\.[a-z]{2,}$/gi;
+    setEmailRegister2(_emailRegister2);
+    setEmail2IsValid(mailformat.test(_emailRegister2));
   };
 
   const handlePasswordRegister1 = (e) => {
-    const passwordRegister1 = e.target.value;
-    setPasswordRegister1(passwordRegister1);
+    const _passwordRegister1 = e.target.value;
+    const passwordformat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    setPasswordRegister1(_passwordRegister1);
+    setPassword1IsValid(passwordformat.test(_passwordRegister1));
   };
-
   const handlePasswordRegister2 = (e) => {
-    const passwordRegister2 = e.target.value;
-    setPasswordRegister2(passwordRegister2);
+    const _passwordRegister2 = e.target.value;
+    const passwordformat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    setPasswordRegister2(_passwordRegister2);
+    setPassword2IsValid(passwordformat.test(_passwordRegister2));
   };
 
   const handleRegisterButton = async (e) => {
@@ -98,7 +144,7 @@ const PageRegister = () => {
         <form>
           <fieldset>
             <legend>Register</legend>
-            <div className="row">
+            <div className={`row ${userNameIsValid ? "valid" : "invalid"}`}>
               <label htmlFor="userName">Username</label>
               <input
                 type="text"
@@ -108,7 +154,11 @@ const PageRegister = () => {
                 placeholder="Enter your username*"
               />
             </div>
-            <div className="row">
+            <div className={`note ${userNameIsValid ? "valid" : "invalid"}`}>
+              <p>allowed: 2 - 20 characters</p>
+            </div>
+
+            <div className={`row ${firstNameIsValid ? "valid" : "invalid"}`}>
               <label htmlFor="firstname">Name</label>
               <input
                 type="text"
@@ -118,7 +168,8 @@ const PageRegister = () => {
                 placeholder="Enter your firstname"
               />
             </div>
-            <div className="row">
+
+            <div className={`row ${secondNameIsValid ? "valid" : "invalid"}`}>
               <label htmlFor="secondname"></label>
               <input
                 type="text"
@@ -129,7 +180,7 @@ const PageRegister = () => {
               />
             </div>
 
-            <div className="row">
+            <div className={`row ${email1IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="emailRegister1">Email</label>
               <input
                 type="text"
@@ -139,8 +190,11 @@ const PageRegister = () => {
                 placeholder="Enter your email*"
               />
             </div>
+            <div className={`note ${email1IsValid ? "valid" : "invalid"}`}>
+              <p>example1@mail.com</p>
+            </div>
 
-            <div className="row">
+            <div className={`row ${email1IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="emailRegister2"></label>
               <input
                 type="text"
@@ -150,8 +204,12 @@ const PageRegister = () => {
                 placeholder="Enter your email again*"
               />
             </div>
-            <div className="row">
-              <label htmlFor="password">Password 1</label>
+            <div className={`note ${email1IsValid ? "valid" : "invalid"}`}>
+              <p>example1@mail.com</p>
+            </div>
+
+            <div className={`row ${password1IsValid ? "valid" : "invalid"}`}>
+              <label htmlFor="password">Password</label>
               <input
                 type={passwordInputType}
                 id="passwordRegister1"
@@ -160,7 +218,11 @@ const PageRegister = () => {
                 placeholder="Password*"
               />
             </div>
-            <div className="row">
+            <div className={`note ${password1IsValid ? "valid" : "invalid"}`}>
+              <p>min. 8 char, 1 letter, 1 number</p>
+            </div>
+
+            <div className={`row ${password2IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="password"></label>
               <input
                 type={passwordInputType}
@@ -178,10 +240,16 @@ const PageRegister = () => {
                   )}
                 </span>
               </div>
+              <div
+                className={`note ${password2IsValid ? "valid" : "invalid"}`}
+              ></div>
             </div>
             <div className="buttonRow">
-              <button onClick={handleRegisterButton}>Register</button>
-                      
+              <button disabled={!formIsValid} onClick={handleRegisterButton}>
+                Register
+              </button>
+              {formIsValid ? "true" : "false"}
+
               <div className="buttonRow">
                 <button>Reset</button>
               </div>

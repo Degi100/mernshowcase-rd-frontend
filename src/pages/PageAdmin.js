@@ -135,6 +135,9 @@ const PageAdmin = () => {
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Username</th>
+                <th>Email</th>
+                <th>Created</th>
+                <th>accessGroups</th>
                 <th></th>
               </tr>
             </thead>
@@ -145,6 +148,9 @@ const PageAdmin = () => {
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
                     <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>{user.accessGroups}</td>
+                    <td>{user.createdAt}</td>
                     <td>
                       <div>
                         <button onClick={() => handle_deleteuser(user._id)}>

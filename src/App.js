@@ -7,6 +7,7 @@ import PageRegister from "./pages/PageRegister";
 import PageLogin from "./pages/PageLogin";
 import PageLogout from "./pages/PageLogout";
 import PageAdmin from "./pages/PageAdmin";
+import PageToDo from "./pages/PageToDo";
 import AppContext from "./AppContext";
 import "./App.scss";
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/admin" element={<PageAdmin />} />
           <Route path="/login" element={<PageLogin />} />
           <Route path="/logout" element={<PageLogout />} />
+          <Route path="/todo" element={<PageToDo />} />
         </Routes>
       </div>
     </div>

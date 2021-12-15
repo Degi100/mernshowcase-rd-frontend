@@ -1,0 +1,76 @@
+.layer-todo {
+  padding: 0;
+  margin: 10 0;
+  text-align: left;
+}
+
+#todo-list {
+  width: max-width;
+}
+
+.todo {
+  padding: 10px;
+  margin-bottom: 10px;
+  // margin: 20px 20px;
+}
+
+
+.todo {
+  display: flex;
+  flex-direction: column;
+}
+.todo:nth-child(4n + 1) {
+  background: linear-gradient(90deg, rgb(0, 149, 255) 0%, rgb(94, 97, 112) 100%);
+}
+
+.todo:nth-child(4n + 2) {
+  background: linear-gradient(90deg, rgb(2, 107, 182) 0%, rgb(78, 83, 105) 100%);
+}
+
+.todo:nth-child(4n + 3) {
+  background: linear-gradient(90deg, rgb(0, 127, 218) 0%, rgb(81, 89, 122) 100%);
+}
+.todo:nth-child(4n + 4) {
+  background: linear-gradient(90deg, rgb(8, 107, 177) 0%, rgb(69, 91, 187) 100%);
+}
+
+button:hover {
+  background-color: rgb(49, 164, 218);
+}
+button:active {
+  background-color: rgb(84, 133, 165);
+}
+
+.todo-text {
+  font-size: 24px;
+  line-height: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.todo-completed {
+  display: flex;
+  margin: 10px 0;
+}
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+// @media screen and (max-width: 582px) {
+//   #todo-list {
+//     width: max-content;
+//     margin: 0px;
+//   }
+//   .todo-app {
+//     display: flex;
+//     justify-content: left;
+//     flex-direction: left;
+//   }
+//   input[type="text"] {
+//     font-size: 20px;
+//     font-family: monospace;
+//   }
+
+// }

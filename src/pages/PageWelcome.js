@@ -3,6 +3,8 @@ import AppContext from "../AppContext";
 
 const PageWelcome = () => {
   const { currentUserIsInGroup } = useContext(AppContext);
+    const { currentUser} = useContext(AppContext);
+
   return (
     <div>
 
@@ -13,10 +15,13 @@ const PageWelcome = () => {
 
         {currentUserIsInGroup("members") && (
           <div className="panel">
-            <h3>Hello Members</h3>
+            <h3>{currentUser.firstName} {currentUser.lastName},</h3>
             <p>
-              Members Club
+              Welcome to our Members Club.
             </p>
+            <div className="news"><span>BRANDNEW: </span>
+            TODO APP Beta Version 1.5 is online!!!!</div>
+           
           </div>
         )}
 

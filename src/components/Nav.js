@@ -21,6 +21,12 @@ const Nav = () => {
             <NavLink to="/admin">Admin-Panel</NavLink>
           </li>
         )}
+  {currentUserIsInGroup("members") && (
+          <li>
+            <NavLink to="/todo">Todo-App</NavLink>
+          </li>
+        )}
+
         {currentUserIsInGroup("loggedOutUsers") && (
           <li>
             <NavLink to="/login">Login</NavLink>
