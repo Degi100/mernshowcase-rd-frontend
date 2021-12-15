@@ -38,8 +38,8 @@ const PageRegister = () => {
         firstNameIsValid &&
         secondNameIsValid &&
         password1IsValid &&
-        password2IsValid
-      //   passwordRegister1 === passwordRegister2
+        password2IsValid &&
+        passwordRegister1 === passwordRegister2
     );
   }, [
     userNameIsValid,
@@ -151,12 +151,12 @@ const PageRegister = () => {
                 id="username"
                 value={userNameRegister}
                 onChange={handleUserNameRegister}
-                placeholder="Enter your username*"
+                placeholder="Username, User-name"
               />
             </div>
-            <div className={`note ${userNameIsValid ? "valid" : "invalid"}`}>
-              <p>allowed: 2 - 20 characters</p>
-            </div>
+            <div
+              className={`note ${userNameIsValid ? "valid" : "invalid"}`}
+            ></div>
 
             <div className={`row ${firstNameIsValid ? "valid" : "invalid"}`}>
               <label htmlFor="firstname">Name</label>
@@ -165,7 +165,7 @@ const PageRegister = () => {
                 id="firstNameRegister"
                 value={firstNameRegister}
                 onChange={handleFirstNameRegister}
-                placeholder="Enter your firstname"
+                placeholder="John"
               />
             </div>
 
@@ -176,7 +176,7 @@ const PageRegister = () => {
                 id="secondNameRegister"
                 value={secondNameRegister}
                 onChange={handleSecondNameRegister}
-                placeholder="Enter your lastname"
+                placeholder="Doe"
               />
             </div>
 
@@ -187,12 +187,12 @@ const PageRegister = () => {
                 id="emailregister1"
                 value={emailRegister1}
                 onChange={handleEmailRegister1}
-                placeholder="Enter your email*"
+                placeholder="example@yourprovider.com"
               />
             </div>
-            <div className={`note ${email1IsValid ? "valid" : "invalid"}`}>
-              <p>example1@mail.com</p>
-            </div>
+            <div
+              className={`note ${email1IsValid ? "valid" : "invalid"}`}
+            ></div>
 
             <div className={`row ${email1IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="emailRegister2"></label>
@@ -201,12 +201,12 @@ const PageRegister = () => {
                 id="emailregister2"
                 value={emailRegister2}
                 onChange={handleEmailRegister2}
-                placeholder="Enter your email again*"
+                placeholder="example@yourprovider.com"
               />
             </div>
-            <div className={`note ${email1IsValid ? "valid" : "invalid"}`}>
-              <p>example1@mail.com</p>
-            </div>
+            <div
+              className={`note ${email1IsValid ? "valid" : "invalid"}`}
+            ></div>
 
             <div className={`row ${password1IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="password">Password</label>
@@ -215,12 +215,12 @@ const PageRegister = () => {
                 id="passwordRegister1"
                 value={passwordRegister1}
                 onChange={handlePasswordRegister1}
-                placeholder="Password*"
+                placeholder="min. 8 char, 1 letter, 1 number"
               />
             </div>
-            <div className={`note ${password1IsValid ? "valid" : "invalid"}`}>
-              <p>min. 8 char, 1 letter, 1 number</p>
-            </div>
+            <div
+              className={`note ${password1IsValid ? "valid" : "invalid"}`}
+            ></div>
 
             <div className={`row ${password2IsValid ? "valid" : "invalid"}`}>
               <label htmlFor="password"></label>
@@ -248,8 +248,6 @@ const PageRegister = () => {
               <button disabled={!formIsValid} onClick={handleRegisterButton}>
                 Register
               </button>
-              {formIsValid ? "true" : "false"}
-
               <div className="buttonRow">
                 <button>Reset</button>
               </div>
