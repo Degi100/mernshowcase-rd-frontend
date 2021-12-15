@@ -120,7 +120,7 @@ export const Todoes = () => {
   return (
     <div>
       <div className="layer-headline">
-        <h1>Taskmanager</h1>
+        <h1>Personal Taskmanager Localstorage</h1>
         </div>
         <div className="layer-todo">
           <div className="todo-app">
