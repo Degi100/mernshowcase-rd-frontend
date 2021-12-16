@@ -17,19 +17,20 @@ const backend_env = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   // const { setCurrentUser, currentUser, currentUserIsInGroup } =  useContext(AppContext);
-  const { setCurrentUser } = useContext(AppContext);
+  const { setCurrentUser  } = useContext(AppContext);
+
+
   useEffect(() => {
     (async () => {
       const requestOptions = {
         method: "GET",
         credentials: "include",
       };
-      const response = await fetch(
-        `${backend_env}/currentuser`,
+      const URL = await fetch(`${backend_env}/currentuser`,
         requestOptions
       );
-      if (response.ok) {
-        const _currentUser = await response.json();
+      if (URL.ok) {
+        const _currentUser = await URL.json();
         setCurrentUser((prev) => ({ ...prev, ..._currentUser }));
       }
     })();

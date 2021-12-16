@@ -14,13 +14,13 @@ export const AppProvider = ({ children }) => {
       .map((m) => m.trim());
     return accessGroupArray.includes(accessGroup);
   };
-
   return (
     <AppContext.Provider
       value={{
         currentUser,
         setCurrentUser,
         currentUserIsInGroup,
+  
       }}
     >
       {children}
