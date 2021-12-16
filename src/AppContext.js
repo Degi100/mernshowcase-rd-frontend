@@ -3,10 +3,8 @@ import { createContext, useState } from "react";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({
-    accessGroups: "loggedOutUsers",
-  });
-
+  const [currentUser, setCurrentUser] = useState({});
+  const [appMessage, setAppMessage] = useState({ kind: "none", message: "" });
 
   const currentUserIsInGroup = (accessGroup) => {
     const accessGroupArray = currentUser.accessGroups
@@ -15,12 +13,18 @@ export const AppProvider = ({ children }) => {
     return accessGroupArray.includes(accessGroup);
   };
 
+  const initializePage = () => {
+    setAppMessage((prev) => ({ ...prev, ...{ kind: "none", message: "" } }));
+  };
   return (
     <AppContext.Provider
       value={{
         currentUser,
         setCurrentUser,
         currentUserIsInGroup,
+        appMessage,
+        setAppMessage,
+        initializePage,
       }}
     >
       {children}
