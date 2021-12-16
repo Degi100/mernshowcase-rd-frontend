@@ -7,7 +7,7 @@ export const AppProvider = ({ children }) => {
     accessGroups: "loggedOutUsers",
   });
 
-
+  
   const currentUserIsInGroup = (accessGroup) => {
     const accessGroupArray = currentUser.accessGroups
       .split(",")
