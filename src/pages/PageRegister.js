@@ -81,7 +81,7 @@ const PageRegister = () => {
     const _emailRegister2 = e.target.value;
     const mailformat = /^[a-z0-9_.-]{2,}@[a-z.]{2,}\.[a-z]{2,}$/gi;
     setEmailRegister2(_emailRegister2);
-    setEmail2IsValid(mailformat.test(_emailRegister2) && _emailRegister2 === emailRegister1);
+    if(setEmail2IsValid(mailformat.test(_emailRegister2) && _emailRegister2 === emailRegister1));
   };
 
   const handlePasswordRegister1 = (e) => {
@@ -186,12 +186,6 @@ const PageRegister = () => {
               isValid={password2IsValid}
             />
 
-            <div className={`row ${password2IsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="password"></label>
-              <div
-                className={`note ${password2IsValid ? "valid" : "invalid"}`}
-              ></div>
-            </div>
             <div className="buttonRow">
               <button disabled={!formIsValid} onClick={handleRegisterButton}>
                 Register

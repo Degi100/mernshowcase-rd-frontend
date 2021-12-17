@@ -136,8 +136,8 @@ const PageAdmin = () => {
                 <th>Last Name</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Created</th>
                 <th>accessGroups</th>
+                <th>Created</th>
                 <th></th>
               </tr>
             </thead>
