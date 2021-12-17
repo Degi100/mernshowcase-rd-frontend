@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
-import ValidationCheck from "../components/ValidationCheck";
 import PasswordDisplayer from "../components/PasswordDisplayer";
 import EmailValidation from "../components/EmailValidation";
 import NameValidation from "../components/NameValidation";
