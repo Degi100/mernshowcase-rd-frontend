@@ -3,10 +3,11 @@ import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
 import ValidationCheck from "../components/ValidationCheck";
 import PasswordDisplayer from "../components/PasswordDisplayer";
+import EmailValidation from "../components/EmailValidation";
+import NameValidation from "../components/NameValidation";
 
 const PageRegister = () => {
-  const { setCurrentUser, currentUserIsInGroup} =
-    useContext(AppContext);
+  const { setCurrentUser, currentUserIsInGroup } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [userNameRegister, setUserNameRegister] = useState("");
@@ -81,7 +82,7 @@ const PageRegister = () => {
     const _emailRegister2 = e.target.value;
     const mailformat = /^[a-z0-9_.-]{2,}@[a-z.]{2,}\.[a-z]{2,}$/gi;
     setEmailRegister2(_emailRegister2);
-    setEmail2IsValid(mailformat.test(_emailRegister2));
+    setEmail2IsValid(mailformat.test(_emailRegister2) && _emailRegister2 === emailRegister1);
   };
 
   const handlePasswordRegister1 = (e) => {
@@ -94,7 +95,7 @@ const PageRegister = () => {
     const _passwordRegister2 = e.target.value;
     const passwordformat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     setPasswordRegister2(_passwordRegister2);
-    setPassword2IsValid(passwordformat.test(_passwordRegister2));
+    setPassword2IsValid(passwordformat.test(_passwordRegister2) && _passwordRegister2 === passwordRegister1);
   };
 
   const handleRegisterButton = async (e) => {
@@ -140,80 +141,45 @@ const PageRegister = () => {
         <form>
           <fieldset>
             <legend>Register</legend>
-            <div className={`row ${userNameIsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="userName">Username</label>
-              <input
-                type="text"
-                id="username"
-                value={userNameRegister}
-                onChange={handleUserNameRegister}
-                placeholder="Username, User-name"
-              />
-              <ValidationCheck isValid={userNameIsValid} />
-            </div>
-            <div
-              className={`note ${userNameIsValid ? "valid" : "invalid"}`}
-            ></div>
 
-            <div className={`row ${firstNameIsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="firstname">Name</label>
-              <input
-                type="text"
-                id="firstNameRegister"
-                value={firstNameRegister}
-                onChange={handleFirstNameRegister}
-                placeholder="John"
-              />
-              <ValidationCheck isValid={firstNameIsValid} />
-            </div>
+            <NameValidation
+              value={userNameRegister}
+              valueHandler={handleUserNameRegister}
+              isValid={userNameIsValid}
+              label={'Username'}
+            />
 
-            <div className={`row ${secondNameIsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="secondname"></label>
-              <input
-                type="text"
-                id="secondNameRegister"
-                value={secondNameRegister}
-                onChange={handleSecondNameRegister}
-                placeholder="Doe"
-              />
-              <ValidationCheck isValid={secondNameIsValid} />
-            </div>
+            <NameValidation
+              value={firstNameRegister}
+              valueHandler={handleFirstNameRegister}
+              isValid={firstNameIsValid}
+              label={'Firstname'}
+            />
 
-            <div className={`row ${email1IsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="emailRegister1">Email</label>
-              <input
-                type="text"
-                id="emailregister1"
-                value={emailRegister1}
-                onChange={handleEmailRegister1}
-                placeholder="example@yourprovider.com"
-              />
-              <ValidationCheck isValid={email1IsValid} />
-            </div>
-            <div
-              className={`note ${email1IsValid ? "valid" : "invalid"}`}
-            ></div>
+            <NameValidation
+              value={secondNameRegister}
+              valueHandler={handleSecondNameRegister}
+              isValid={secondNameIsValid}
+              label={'Lastname'}
+            />
 
-            <div className={`row ${email1IsValid ? "valid" : "invalid"}`}>
-              <label htmlFor="emailRegister2"></label>
-              <input
-                type="text"
-                id="emailregister2"
-                value={emailRegister2}
-                onChange={handleEmailRegister2}
-                placeholder="example@yourprovider.com"
-                />
-                <ValidationCheck isValid={email2IsValid} />
-            </div>
-            <div
-              className={`note ${email1IsValid ? "valid" : "invalid"}`}
-            ></div>
+            <EmailValidation
+              value={emailRegister1}
+              valueHandler={handleEmailRegister1}
+              isValid={email1IsValid}
+            />
+
+            <EmailValidation
+              value={emailRegister2}
+              valueHandler={handleEmailRegister2}
+              isValid={email2IsValid}
+            />
 
             <PasswordDisplayer
               value={passwordRegister1}
               valueHandler={handlePasswordRegister1}
               isValid={password1IsValid}
-              />
+            />
 
             <PasswordDisplayer
               value={passwordRegister2}

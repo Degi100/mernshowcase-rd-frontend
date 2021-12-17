@@ -1,3 +1,4 @@
+import ValidationCheck from "./ValidationCheck";
 import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
@@ -15,6 +16,7 @@ const PasswordDisplayer = (props) => {
         onChange={props.valueHandler}
         placeholder="8 Char 1 letter and 1 num"
       />
+        <ValidationCheck isValid = {props.isValid} />
       <span className="passwordIcon" onClick={() => setShowingPassword(!showingPassword)}>
         {showingPassword && <AiFillEye />}
         {!showingPassword && <AiFillEyeInvisible />}
