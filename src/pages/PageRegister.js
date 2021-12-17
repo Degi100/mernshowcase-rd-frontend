@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import AppContext from "../AppContext";
 import { useNavigate } from "react-router";
-import PasswordDisplayer from "../components/PasswordDisplayer";
-import EmailValidation from "../components/EmailValidation";
-import NameValidation from "../components/NameValidation";
+import PasswordDisplayer from "../components/formValidation/PasswordDisplayer";
+import EmailValidation from "../components/formValidation/EmailValidation";
+import NameValidation from "../components/formValidation/NameValidation";
 
 const PageRegister = () => {
   const { setCurrentUser, currentUserIsInGroup } = useContext(AppContext);
@@ -81,7 +81,7 @@ const PageRegister = () => {
     const _emailRegister2 = e.target.value;
     const mailformat = /^[a-z0-9_.-]{2,}@[a-z.]{2,}\.[a-z]{2,}$/gi;
     setEmailRegister2(_emailRegister2);
-    if(setEmail2IsValid(mailformat.test(_emailRegister2) && _emailRegister2 === emailRegister1));
+    (setEmail2IsValid(mailformat.test(_emailRegister2) && _emailRegister2 === emailRegister1));
   };
 
   const handlePasswordRegister1 = (e) => {
@@ -90,6 +90,7 @@ const PageRegister = () => {
     setPasswordRegister1(_passwordRegister1);
     setPassword1IsValid(passwordformat.test(_passwordRegister1));
   };
+
   const handlePasswordRegister2 = (e) => {
     const _passwordRegister2 = e.target.value;
     const passwordformat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -116,6 +117,9 @@ const PageRegister = () => {
       }),
     };
 
+
+
+    
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/createuser`,
       requestOptions

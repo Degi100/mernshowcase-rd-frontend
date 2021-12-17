@@ -19,7 +19,6 @@ function App() {
   // const { setCurrentUser, currentUser, currentUserIsInGroup } =  useContext(AppContext);
   const { setCurrentUser  } = useContext(AppContext);
 
-
   useEffect(() => {
     (async () => {
       const requestOptions = {

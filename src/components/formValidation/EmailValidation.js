@@ -1,8 +1,7 @@
-import ValidationCheck from "./ValidationCheck";
-
+import ValidationCheck from "../formValidation/ValidationCheck";
 
 const EmailValidation = (props) => {
-	return (
+  return (
     <div>
       <div className={`row ${props.isValid ? "valid" : "invalid"}`}>
         <label htmlFor="emailRegister1">Email</label>
@@ -13,10 +12,10 @@ const EmailValidation = (props) => {
           onChange={props.valueHandler}
           placeholder="example@yourprovider.com"
         />
-             <ValidationCheck isValid={props.isValid} />
-        </div>
-        <div className={`note ${props.valid ? "valid" : "invalid"}`}></div>
-        </div>
+        <ValidationCheck isValid={props.isValid} />
+      </div>
+      <div className={`note ${props.valid ? "valid" : "invalid"}`}></div>
+    </div>
   );
 };
 

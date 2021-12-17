@@ -1,4 +1,4 @@
-import ValidationCheck from "./ValidationCheck";
+import ValidationCheck from "../formValidation/ValidationCheck";
 
 const NameValidation = (props) => {
   return (

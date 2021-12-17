@@ -21,7 +21,7 @@ const Nav = () => {
             <NavLink to="/admin">Admin-Panel</NavLink>
           </li>
         )}
-  {currentUserIsInGroup("members") && (
+        {currentUserIsInGroup("members") && (
           <li>
             <NavLink to="/todo">Taskmanager</NavLink>
           </li>

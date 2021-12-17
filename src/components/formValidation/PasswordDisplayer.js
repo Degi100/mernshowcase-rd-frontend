@@ -1,4 +1,4 @@
-import ValidationCheck from "./ValidationCheck";
+import ValidationCheck from "../formValidation/ValidationCheck";
 import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
